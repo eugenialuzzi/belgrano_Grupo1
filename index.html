@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turismo Belgrano | Recorrido autoguiado por cinco paradas</title>
+  <meta name="description" content="Recorrido autoguiado por el barrio de Belgrano, Buenos Aires: Barrancas, Estadio Monumental, Museo Sarmiento, Museo Larreta y Barrio Chino.">
+
+ 
+  <link rel="icon" type="image/png" href="imagenes/favicon.png">
+
+
+  <link rel="stylesheet" href="estilos/styles.css">
+
+
+  <style>
+
+    .hero-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin-bottom: 16px;
+    }
+
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .stats li {
+      flex: 1 1 calc(50% - 12px);
+      padding: 12px 16px;
+      background-color: var(--color-bg);
+      border-radius: 8px;
+    }
+
+    .stats span {
+      display: block;
+      font-size: 0.6875rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--color-text-soft);
+    }
+
+    .stats strong {
+      font-family: var(--font-heading);
+      font-size: 0.9375rem;
+    }
+
+    .hero-figure img {
+      width: 100%;
+      aspect-ratio: 515 / 320;         
+      object-fit: cover;
+      border-radius: var(--radius-card);
+    }
+
+    .hero-figure figcaption {
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: var(--color-text-soft);
+    }
+
+
+    .stops-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .stop-card {
+      flex: 1 1 100%;
+    }
+
+    .stop-card-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .stop-card .link-arrow {
+      margin-top: 12px;
+      padding: 6px 0;
+    }
+
+  
+    @media (min-width: 900px) {
+      .hero-grid {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .hero-text {
+        flex: 1;
+      }
+
+      .hero-figure {
+        flex: 0 0 40%;
+      }
+
+      .stats li {
+        flex: 1 1 0; 
+      }
+
+      .stop-card {
+        flex: 1 1 calc(50% - 20px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="imagenes/logo-belgrano.png" alt="" width="44" height="44">
+        <span class="logo-text">
+          <strong>Turismo Belgrano</strong>
+          <small>Guías autoguiadas</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="index.html" aria-current="page">El Circuito</a></li>
+          <li><a href="index.html#paradas">Paradas</a></li>
+          <li><a href="preparacion.html">Preparación</a></li>
+        </ul>
+      </nav>
+
+      <form class="search" role="search" action="#" method="get">
+        <label class="visually-hidden" for="buscar">Buscar en el recorrido</label>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="M16.5 16.5L21 21"/>
+        </svg>
+        <input type="search" id="buscar" name="q" placeholder="Buscar en el recorrido…">
+      </form>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+   
+    <section class="section hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <ul class="hero-tags">
+            <li class="badge badge--blue">Recorrido peatonal autoguiado</li>
+            <li class="badge">CABA, Buenos Aires</li>
+          </ul>
+
+          <h1>Belgrano Histórico y Cultural: Cinco Contrastes a Pie</h1>
+          <p class="lead">Descubrí Belgrano a tu propio ritmo. Un trayecto peatonal que enlaza los grandes desniveles verdes de Barrancas con la elegancia residencial neoclásica del Museo Larreta y la vibrante modernidad multicultural del Barrio Chino.</p>
+
+          <ul class="stats">
+            <li><span>Duración total</span><strong>~ 2.5 horas</strong></li>
+            <li><span>Distancia</span><strong>2.8 km</strong></li>
+            <li><span>Dificultad</span><strong>Baja (peatonal)</strong></li>
+            <li><span>Accesibilidad</span><strong>Parcial (rampas)</strong></li>
+          </ul>
+
+          <a class="btn-primary" href="barrancasDeBelgrano.html">
+            Iniciar recorrido
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </a>
+        </div>
+
+        <figure class="hero-figure">
+          <img src="imagenes/Barrancas1.jpeg" width="1600" height="1200"
+               alt="Barrancas de Belgrano en un día soleado: césped, senderos con bancos y árboles, con los edificios del barrio de fondo.">
+          <figcaption>Barrancas de Belgrano, punto de inicio del recorrido.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="paradas">
+      <div class="container">
+        <div class="section-title">
+          <p class="eyebrow">Recorrido Belgrano</p>
+          <h2>Descubre el encanto de cada parada</h2>
+          <p>Un viaje por la historia, la cultura y la arquitectura que define a este emblemático barrio porteño.</p>
+        </div>
+
+        <ol class="stops-grid">
+          <li class="card card--hover stop-card">
+            <div class="stop-card-title">
+              <span class="stop-number" aria-hidden="true">1</span>
+              <h3>Barrancas de Belgrano</h3>
+            </div>
+            <p>Un mirador natural con vistas impresionantes del Río de la Plata. Ideal para disfrutar del atardecer.</p>
+            <a class="link-arrow" href="barrancasDeBelgrano.html">Conocer más <span class="visually-hidden">sobre Barrancas de Belgrano</span> <span aria-hidden="true">→</span></a>
+          </li>
+
+          <li class="card card--hover stop-card">
+            <div class="stop-card-title">
+              <span class="stop-number" aria-hidden="true">2</span>
+              <h3>Estadio River Plate - Estadio Monumental</h3>
+            </div>
+            <p>El estadio más grande de Argentina y sede de la final del Mundial 78. Visitá el Museo River y conocé tribunas y vestuarios con la visita guiada.</p>
+            <a class="link-arrow" href="estadioMonumental.html">Conocer más <span class="visually-hidden">sobre el Estadio Monumental</span> <span aria-hidden="true">→</span></a>
+          </li>
+
+          <li class="card card--hover stop-card">
+            <div class="stop-card-title">
+              <span class="stop-number" aria-hidden="true">3</span>
+              <h3>Museo Histórico Sarmiento</h3>
+            </div>
+            <p>El antiguo edificio municipal de Belgrano, donde sesionó el Congreso Nacional en 1880. Hoy conserva los objetos personales y el legado de Sarmiento.</p>
+            <a class="link-arrow" href="museoSarmiento.html">Conocer más <span class="visually-hidden">sobre el Museo Histórico Sarmiento</span> <span aria-hidden="true">→</span></a>
+          </li>
+
+          <li class="card card--hover stop-card">
+            <div class="stop-card-title">
+              <span class="stop-number" aria-hidden="true">4</span>
+              <h3>Museo de Arte Español Enrique Larreta</h3>
+            </div>
+            <p>La antigua casa del escritor Enrique Larreta, convertida en un museo que alberga arte español.</p>
+            <a class="link-arrow" href="museoLarreta.html">Conocer más <span class="visually-hidden">sobre el Museo Larreta</span> <span aria-hidden="true">→</span></a>
+          </li>
+
+          <li class="card card--hover stop-card">
+            <div class="stop-card-title">
+              <span class="stop-number" aria-hidden="true">5</span>
+              <h3>Barrio Chino y Arco de Belgrano</h3>
+            </div>
+            <p>Un paseo gastronómico y cultural que combina la tradición china con la identidad porteña.</p>
+            <a class="link-arrow" href="barrioChino.html">Conocer más <span class="visually-hidden">sobre el Barrio Chino</span> <span aria-hidden="true">→</span></a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="logo" href="index.html">
+            <img src="imagenes/logo-belgrano.png" alt="" width="36" height="36">
+            <span class="logo-text"><strong>Turismo Belgrano</strong></span>
+          </a>
+          <p>Recorrido autoguiado por cinco paradas del barrio de Belgrano, Comuna 13: historia, arquitectura y espacios verdes.</p>
+        </div>
+
+        <nav class="footer-col" aria-label="Paradas del recorrido">
+          <h2>Paradas</h2>
+          <ul>
+            <li><a href="barrancasDeBelgrano.html">Barrancas de Belgrano</a></li>
+            <li><a href="estadioMonumental.html">Estadio Monumental</a></li>
+            <li><a href="museoSarmiento.html">Museo Histórico Sarmiento</a></li>
+            <li><a href="museoLarreta.html">Museo Larreta</a></li>
+            <li><a href="barrioChino.html">Barrio Chino y Arco</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h2>Recursos</h2>
+          <ul>
+            <li><a href="#">Contacto e Informes</a></li>
+            <li><a href="#">Oficinas de Turismo</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Grupo 1 · Proyecto académico de Diseño y Desarrollo Web.</p>
+        <a href="#">Términos y condiciones</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
