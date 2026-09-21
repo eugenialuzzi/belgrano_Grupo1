@@ -4,7 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Parada 3: Museo Histórico Sarmiento | Turismo Belgrano</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="estilos/styles.css">
+  <style>
+    /* Estilos propios de esta página: galería de fotos del museo */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery figure {
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .gallery figure:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .gallery figcaption {
+      padding: 10px 14px;
+      font-size: 0.75rem;
+      color: var(--color-text-soft);
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
