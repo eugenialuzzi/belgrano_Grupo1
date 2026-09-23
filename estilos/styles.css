@@ -512,6 +512,11 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
   background-color: var(--color-accent-dark);
 }
 
+/* Botón de enlace externo dentro de una parada */
+.stop-cta {
+  margin-top: 20px;
+}
+
 /* Enlace con flecha ("Conocer más →") */
 .link-arrow {
   display: inline-flex;

@@ -41,17 +41,33 @@
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-  <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="index.html">
-        <span class="logo-text"><strong>Turismo Belgrano</strong><small>Guías autoguiadas</small></span>
+        <img src="imagenes/logo-belgrano.png" alt="" width="44" height="44">
+        <span class="logo-text">
+          <strong>Turismo Belgrano</strong>
+          <small>Guías autoguiadas</small>
+        </span>
       </a>
-      <nav class="main-nav">
+
+      <nav class="main-nav" aria-label="Navegación principal">
         <ul>
           <li><a href="index.html">El Circuito</a></li>
+          <li><a href="index.html#paradas" aria-current="true">Paradas</a></li>
+          <li><a href="preparacion.html">Preparación</a></li>
         </ul>
       </nav>
+
+      <form class="search" role="search" action="#" method="get">
+        <label class="visually-hidden" for="buscar">Buscar en el recorrido</label>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M16.5 16.5L21 21" />
+        </svg>
+        <input type="search" id="buscar" name="q" placeholder="Buscar en el recorrido…">
+      </form>
     </div>
   </header>
 
@@ -194,16 +210,48 @@
 
     <!-- Paginación -->
     <section class="section section--alt">
-      <nav class="container stop-pager">
-        <a class="link-arrow" href="index.html">← Volver al circuito</a>
-        <a class="btn-primary" href="#">Siguiente parada: Museo Larreta →</a>
+      <nav class="container stop-pager" aria-label="Navegación entre paradas">
+        <a class="link-arrow" href="estadioMonumental.html"><span aria-hidden="true">←</span> Parada anterior: Estadio Monumental</a>
+        <a class="btn-primary" href="museoLarreta.html">Siguiente parada: Museo Larreta <span aria-hidden="true">→</span></a>
       </nav>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 Grupo 1 — Turismo Belgrano. Todos los derechos reservados.</p>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="logo" href="index.html">
+            <img src="imagenes/logo-belgrano.png" alt="" width="36" height="36">
+            <span class="logo-text"><strong>Turismo Belgrano</strong></span>
+          </a>
+          <p>Recorrido autoguiado por cinco paradas del barrio de Belgrano, Comuna 13: historia, arquitectura y espacios verdes.</p>
+        </div>
+
+        <nav class="footer-col" aria-label="Paradas del recorrido">
+          <h2>Paradas</h2>
+          <ul>
+            <li><a href="barrancasDeBelgrano.html">Barrancas de Belgrano</a></li>
+            <li><a href="estadioMonumental.html">Estadio Monumental</a></li>
+            <li><a href="museoSarmiento.html">Museo Histórico Sarmiento</a></li>
+            <li><a href="museoLarreta.html">Museo Larreta</a></li>
+            <li><a href="barrioChino.html">Barrio Chino y Arco</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h2>Recursos</h2>
+          <ul>
+            <li><a href="#">Contacto e Informes</a></li>
+            <li><a href="#">Oficinas de Turismo</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Grupo 1 · Proyecto académico de Diseño y Desarrollo Web.</p>
+        <a href="#">Términos y condiciones</a>
+      </div>
     </div>
   </footer>
 </body>
