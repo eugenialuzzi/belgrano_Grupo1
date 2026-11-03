@@ -13,7 +13,7 @@ Es importante destacar que el sitio es responsive en cada una de sus páginas.
   - Figma: https://www.figma.com/design/J1dwq8mSbALFGxy70VLUTP/Belgrano?node-id=0-1&t=vtLMzRLKJ8KRpZxx-1
 - Integrantes y contribuciones:
   - Eugenia Luzzi: Barrancas de belgrano, form, preparación y reserva. Implementación de js. Figma, armado y prototipo.
-  - Cecilia Diaz: index.html y Museo Sarmiento. Implementación de js. Documentacion. 
-  - Franco Angelelli: estadio monumental. Implementación de js.
+  - Cecilia Diaz: index.html y Museo Sarmiento. Implementación de js. Documentación. 
+  - Franco Angelelli: estadio monumental. Implementación de js. Documentación
   - Sol Travetto: museo larreta. Implementación de js. Figma
   - Kevin Tsai: barrio chino. 
