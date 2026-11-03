@@ -1,0 +1,19 @@
+- Nombre y objetivo — Turismo Belgrano, guía autoguiada sin necesidad de guía turístico.
+- Tema y categoría — Recorridos temáticos, cinco contrastes a pie, con la opción de realizar una reserva y conocer la preparación que necesita el visitante para realizar la visita. Puede reservar el recorrido completo o algunos de ellos.
+- Público destinatario — turistas y vecinos de CABA.
+- Funcionalidades - El sitio permite navegar y hacer un recorrido por el barrio de Belgrano, tenemos Barracas, Estadio Monumental. Museo Sarmiento, Museo Larreta y Barrio chino. Luego permite realizar una reserva en pesos, dolares o reales, por todo el recorrido o algunos de ellos. Al finalizar indica la preparacion que uno necesita y tambien contamos con un formulario de contactos.
+Es importante destacar que el sitio es responsive en cada una de sus páginas. 
+- Tecnologías — Tailwind v3 por CDN, JS vanilla, tipografías WOFF2, Git/GitHub Pages, Figma, y la tabla completa de tokens del Design System tal como están en js/tailwind-config.js.
+- Estructura — Index.html -> Barrio de Barracas -> Estadio Monumental -> Museo Sarmieno -> Museo Larreta -> Barrio Chino -> Reservar -> Preparacion -> Contacto. 
+- Cómo ejecutarlo — git clone + Live Server, Link https://eugenialuzzi.github.io/belgrano_Grupo1/
+- API — DolarAPI, con el fragmento de fetch/try-catch y la explicación del fallback.
+- Sitio desplegado — https://eugenialuzzi.github.io/belgrano_Grupo1/ y el repo: https://github.com/eugenialuzzi/belgrano_Grupo1.git.
+- Prototipo y Design System — los links de Figma:
+  - Prototipo: https://www.figma.com/proto/J1dwq8mSbALFGxy70VLUTP/Belgrano?node-id=306-3683&viewport=1030%2C-425%2C0.18&t=m2f9NO6rIfjR4LJo-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=289%3A44&show-proto-sidebar=1&page-id=0%3A1
+  - Figma: https://www.figma.com/design/J1dwq8mSbALFGxy70VLUTP/Belgrano?node-id=0-1&t=vtLMzRLKJ8KRpZxx-1
+- Integrantes y contribuciones:
+  - Eugenia Luzzi: Barrancas de belgrano, form, preparación y reserva. Implementación de js. Figma, armado y prototipo.
+  - Cecilia Diaz: index.html y Museo Sarmiento. Implementación de js. Documentacion. 
+  - Franco Angelelli: estadio monumental. Implementación de js.
+  - Sol Travetto: museo larreta. Implementación de js. Figma
+  - Kevin Tsai: barrio chino. 
