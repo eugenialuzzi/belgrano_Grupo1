@@ -4,253 +4,250 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Parada 3: Museo Histórico Sarmiento | Turismo Belgrano</title>
-  <link rel="stylesheet" href="estilos/styles.css">
-  <style>
-    /* Estilos propios de esta página: galería de fotos del museo */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-    }
 
-    .gallery figure {
-      border-radius: var(--radius-card);
-      overflow: hidden;
-      border: 1px solid var(--color-border);
-      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    }
+  <link rel="stylesheet" href="estilos/base.css">
 
-    .gallery figure:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-    }
-
-    .gallery img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-    }
-
-    .gallery figcaption {
-      padding: 10px 14px;
-      font-size: 0.75rem;
-      color: var(--color-text-soft);
-    }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
 </head>
-<body>
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+<body class="bg-white font-texto text-base leading-relaxed text-texto">
+  <a href="#contenido"
+    class="absolute left-4 top-[-100px] z-10 rounded-b-lg bg-texto px-4 py-2.5 text-white focus:top-0">Saltar al contenido</a>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="index.html">
-        <img src="imagenes/logo-belgrano.png" alt="" width="44" height="44">
-        <span class="logo-text">
-          <strong>Turismo Belgrano</strong>
-          <small>Guías autoguiadas</small>
+  <header class="border-b border-borde bg-white">
+    <div
+      class="mx-auto flex w-full max-w-[1312px] flex-wrap items-center gap-3 px-4 py-3 md:max-w-[1360px] md:min-h-[80px] md:flex-nowrap md:justify-between md:gap-4 md:px-10 md:py-0 lg:max-w-[1440px] lg:px-20">
+
+      <a href="index.html" class="flex items-center gap-3 text-texto no-underline">
+        <img src="imagenes/logo-belgrano.png" alt="" width="44" height="44" class="h-11 w-11">
+        <span>
+          <strong class="block font-marca text-base font-bold leading-tight">Turismo Belgrano</strong>
+          <small class="block text-[11px] uppercase tracking-[0.5px] text-suave">Guías autoguiadas</small>
         </span>
       </a>
 
-      <nav class="main-nav" aria-label="Navegación principal">
-        <ul>
-          <li><a href="index.html">El Circuito</a></li>
-          <li><a href="index.html#paradas" aria-current="true">Paradas</a></li>
-          <li><a href="preparacion.html">Preparación</a></li>
+      <nav class="order-3 w-full md:order-2 md:w-auto" aria-label="Navegación principal">
+        <ul class="flex flex-wrap gap-2">
+          <li><a href="index.html"
+              class="block rounded-boton px-4 py-[11px] text-sm font-semibold text-texto no-underline transition-colors hover:bg-fondo md:py-2">El Circuito</a></li>
+          <li><a href="index.html#paradas" aria-current="page"
+              class="block rounded-boton px-4 py-[11px] text-sm font-semibold text-texto no-underline transition-colors hover:bg-fondo md:py-2 [&[aria-current]]:bg-primario-oscuro [&[aria-current]]:font-bold [&[aria-current]]:text-white">Paradas</a></li>
+          <li><a href="preparacion.html"
+              class="block rounded-boton px-4 py-[11px] text-sm font-semibold text-texto no-underline transition-colors hover:bg-fondo md:py-2">Preparación</a></li>
+          <li><a href="reserva.html"
+              class="block rounded-boton px-4 py-[11px] text-sm font-semibold text-texto no-underline transition-colors hover:bg-fondo md:py-2">Reservar</a></li>
         </ul>
       </nav>
 
-      <form class="search" role="search" action="#" method="get">
-        <label class="visually-hidden" for="buscar">Buscar en el recorrido</label>
+      <form role="search" action="#" method="get"
+        class="order-2 flex w-full items-center gap-2 rounded-boton border border-secundario bg-fondo px-3.5 focus-within:border-primario-oscuro focus-within:ring-[3px] focus-within:ring-primario/35 md:order-3 md:w-[260px]">
+        <label class="sr-only" for="buscar">Buscar en el recorrido</label>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-          stroke-linecap="round" aria-hidden="true">
+          stroke-linecap="round" aria-hidden="true" class="shrink-0 text-primario-oscuro">
           <circle cx="11" cy="11" r="7" />
           <path d="M16.5 16.5L21 21" />
         </svg>
-        <input type="search" id="buscar" name="q" placeholder="Buscar en el recorrido…">
+        <input type="search" id="buscar" name="q" placeholder="Buscar en el recorrido…"
+          class="min-h-[44px] w-full border-0 bg-transparent font-texto text-sm text-texto placeholder:text-suave focus:outline-none md:min-h-[40px]">
       </form>
     </div>
   </header>
 
   <main id="contenido">
-    <!-- Hero / Intro -->
-    <section class="section">
-      <div class="container stop-hero">
-        <div class="stop-text">
-          <div class="page-eyebrow">
-            <span class="stop-number">3</span>
-            <span class="eyebrow">Parada del circuito</span>
+    <section class="py-10 md:py-16">
+      <div class="mx-auto w-full max-w-[1312px] px-4 md:max-w-[1360px] md:px-10 lg:max-w-[1440px] lg:px-20 flex flex-col gap-8 md:flex-row">
+        <div class="md:flex-1">
+          <div class="mb-6 flex items-center gap-2">
+            <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primario-oscuro text-sm font-bold text-white">3</span>
+            <span class="font-titulo text-[0.8125rem] font-bold uppercase tracking-wider text-primario-oscuro">Parada del circuito</span>
           </div>
-          <h1>Museo Histórico Sarmiento</h1>
-          <p class="page-subtitle">Historia y política en el antiguo edificio municipal</p>
-          <p class="lead">El Museo Histórico Sarmiento ocupa el edificio de la antigua Municipalidad de Belgrano, una joya de estilo neoclásico italiano inaugurada en 1873 y proyectada por el arquitecto Juan Antonio Buschiazzo. Entre estas paredes sesionó el Congreso Nacional en 1880 durante la federalización de Buenos Aires, y hoy sus salas preservan la memoria de Domingo Faustino Sarmiento: su labor como educador, escritor, gobernador y presidente de la Nación.</p>
+          <h1 class="font-titulo text-[1.75rem] font-extrabold leading-tight text-texto md:text-[2rem]">Museo Histórico Sarmiento</h1>
+          <p class="mt-1.5 font-titulo text-base font-semibold text-verde">Historia y política en el antiguo edificio municipal</p>
+          <p class="mt-6 text-[0.9375rem] text-suave">El Museo Histórico Sarmiento ocupa el edificio de la antigua Municipalidad de Belgrano, una joya de estilo neoclásico italiano inaugurada en 1873 y proyectada por el arquitecto Juan Antonio Buschiazzo. Entre estas paredes sesionó el Congreso Nacional en 1880 durante la federalización de Buenos Aires, y hoy sus salas preservan la memoria de Domingo Faustino Sarmiento: su labor como educador, escritor, gobernador y presidente de la Nación.</p>
 
-          <h2 class="subheading">Qué ver en el museo</h2>
-          <ul class="activities">
-            <li>Recorrer las salas con mobiliario original, manuscritos y objetos personales de Sarmiento.</li>
-            <li>Visitar la biblioteca especializada y el centro de investigación histórica.</li>
-            <li>Contemplar la arquitectura neoclásica del edificio y su fachada declarada Monumento Histórico Nacional.</li>
+          <h2 class="mb-2.5 mt-6 text-sm font-bold uppercase tracking-[0.5px]">Qué ver en el museo</h2>
+          <ul class="mt-0 space-y-2">
+            <li class="relative pl-6 text-sm before:absolute before:left-0 before:top-[3px] before:flex before:h-4 before:w-4 before:items-center before:justify-center before:rounded-full before:border-[1.5px] before:border-verde before:text-[0.5625rem] before:font-bold before:text-verde before:content-['✓']">Recorrer las salas con mobiliario original, manuscritos y objetos personales de Sarmiento.</li>
+            <li class="relative pl-6 text-sm before:absolute before:left-0 before:top-[3px] before:flex before:h-4 before:w-4 before:items-center before:justify-center before:rounded-full before:border-[1.5px] before:border-verde before:text-[0.5625rem] before:font-bold before:text-verde before:content-['✓']">Visitar la biblioteca especializada y el centro de investigación histórica.</li>
+            <li class="relative pl-6 text-sm before:absolute before:left-0 before:top-[3px] before:flex before:h-4 before:w-4 before:items-center before:justify-center before:rounded-full before:border-[1.5px] before:border-verde before:text-[0.5625rem] before:font-bold before:text-verde before:content-['✓']">Contemplar la arquitectura neoclásica del edificio y su fachada declarada Monumento Histórico Nacional.</li>
           </ul>
 
-          <div class="data-card">
-            <h2>Datos útiles</h2>
-            <dl>
-              <div>
-                <dt>Ubicación</dt>
-                <dd>Juramento 2180 (esq. Cuba), Belgrano, CABA</dd>
+          <div class="mt-6 rounded-lg bg-fondo p-4">
+            <h2 class="mb-3 font-titulo text-sm font-bold">Datos útiles</h2>
+            <dl class="m-0 mb-4 flex flex-col gap-3 sm:flex-row">
+              <div class="sm:flex-1">
+                <dt class="text-[11px] uppercase tracking-[0.5px] text-suave">Ubicación</dt>
+                <dd class="mt-1 text-[0.8125rem] font-semibold">Juramento 2180 (esq. Cuba), Belgrano, CABA</dd>
               </div>
-              <div>
-                <dt>Días y horarios</dt>
-                <dd>Miércoles a viernes de 13 a 19 h — Sábados, domingos y feriados de 14 a 19 h</dd>
+              <div class="sm:flex-1">
+                <dt class="text-[11px] uppercase tracking-[0.5px] text-suave">Días y horarios</dt>
+                <dd class="mt-1 text-[0.8125rem] font-semibold">Miércoles a viernes de 13 a 19 h — Sábados, domingos y feriados de 14 a 19 h</dd>
               </div>
-              <div>
-                <dt>Entrada</dt>
-                <dd>Gratuita</dd>
+              <div class="sm:flex-1">
+                <dt class="text-[11px] uppercase tracking-[0.5px] text-suave">Entrada</dt>
+                <dd class="mt-1 text-[0.8125rem] font-semibold">Gratuita</dd>
               </div>
             </dl>
           </div>
         </div>
 
-        <figure class="stop-figure">
-          <img src="imagenes/Museo Fachada.webp" alt="Fachada neoclásica del Museo Histórico Sarmiento sobre la calle Juramento">
-          <figcaption>Fachada principal del Museo Histórico Sarmiento, antiguo edificio de la Municipalidad de Belgrano.</figcaption>
+        <figure class="md:mt-16 md:flex-[0_0_40%]">
+          <img class="w-full rounded-tarjeta object-cover" style="aspect-ratio: 515 / 327" src="imagenes/Museo Fachada.webp" alt="Fachada neoclásica del Museo Histórico Sarmiento sobre la calle Juramento">
+          <figcaption class="mt-3 text-xs text-suave">Fachada principal del Museo Histórico Sarmiento, antiguo edificio de la Municipalidad de Belgrano.</figcaption>
         </figure>
       </div>
     </section>
 
-    <!-- Galería -->
-    <section class="section section--alt">
-      <div class="container">
-        <div class="section-title">
-          <h2>Postales del museo</h2>
-          <p>Un recorrido visual por las salas, el patrimonio y la arquitectura del edificio histórico.</p>
+    <section class="py-10 md:py-16 bg-fondo">
+      <div class="mx-auto w-full max-w-[1312px] px-4 md:max-w-[1360px] md:px-10 lg:max-w-[1440px] lg:px-20">
+        <div class="mb-6">
+          <h2 class="font-titulo text-2xl font-bold leading-tight text-texto md:text-[1.75rem]">Postales del museo</h2>
+          <p class="mt-2 text-suave">Un recorrido visual por las salas, el patrimonio y la arquitectura del edificio histórico.</p>
         </div>
-        <ul class="gallery">
-          <li>
+        <ul class="flex flex-col gap-5 sm:flex-row">
+          <li class="sm:flex-1">
             <figure>
-              <img src="imagenes/Museo Ingreso.webp" alt="Hall de ingreso del Museo Histórico Sarmiento">
-              <figcaption>Hall de ingreso</figcaption>
+              <img class="w-full rounded-tarjeta object-cover" style="aspect-ratio: 4 / 3" src="imagenes/Museo Ingreso.webp" alt="Hall de ingreso del Museo Histórico Sarmiento">
+              <figcaption class="mt-2 text-[0.8125rem] text-suave">Hall de ingreso</figcaption>
             </figure>
           </li>
-          <li>
+          <li class="sm:flex-1">
             <figure>
-              <img src="imagenes/Sillon sarmiento.webp" alt="Sillón presidencial de Domingo Faustino Sarmiento">
-              <figcaption>Sillón de Sarmiento</figcaption>
+              <img class="w-full rounded-tarjeta object-cover" style="aspect-ratio: 4 / 3" src="imagenes/Sillon sarmiento.webp" alt="Sillón presidencial de Domingo Faustino Sarmiento">
+              <figcaption class="mt-2 text-[0.8125rem] text-suave">Sillón de Sarmiento</figcaption>
             </figure>
           </li>
-          <li>
+          <li class="sm:flex-1">
             <figure>
-              <img src="imagenes/biblioteca .webp" alt="Biblioteca y archivo documental del museo">
-              <figcaption>Biblioteca histórica</figcaption>
+              <img class="w-full rounded-tarjeta object-cover" style="aspect-ratio: 4 / 3" src="imagenes/biblioteca .webp" alt="Biblioteca y archivo documental del museo">
+              <figcaption class="mt-2 text-[0.8125rem] text-suave">Biblioteca histórica</figcaption>
             </figure>
           </li>
-          <li>
+          <li class="sm:flex-1">
             <figure>
-              <img src="imagenes/Neoclasico.webp" alt="Detalle arquitectónico neoclásico del edificio">
-              <figcaption>Detalles neoclásicos</figcaption>
+              <img class="w-full rounded-tarjeta object-cover" style="aspect-ratio: 4 / 3" src="imagenes/Neoclasico.webp" alt="Detalle arquitectónico neoclásico del edificio">
+              <figcaption class="mt-2 text-[0.8125rem] text-suave">Detalles neoclásicos</figcaption>
             </figure>
           </li>
-          <li>
+          <li class="sm:flex-1">
             <figure>
-              <img src="imagenes/Patio interno.webp" alt="Patio interno y jardines del museo">
-              <figcaption>Patio interno</figcaption>
+              <img class="w-full rounded-tarjeta object-cover" style="aspect-ratio: 4 / 3" src="imagenes/Patio interno.webp" alt="Patio interno y jardines del museo">
+              <figcaption class="mt-2 text-[0.8125rem] text-suave">Patio interno</figcaption>
             </figure>
           </li>
-          <li>
+          <li class="sm:flex-1">
             <figure>
-              <img src="imagenes/Fachada flores.webp" alt="Fachada del museo con jardines en flor">
-              <figcaption>Jardines de la fachada</figcaption>
+              <img class="w-full rounded-tarjeta object-cover" style="aspect-ratio: 4 / 3" src="imagenes/Fachada flores.webp" alt="Fachada del museo con jardines en flor">
+              <figcaption class="mt-2 text-[0.8125rem] text-suave">Jardines de la fachada</figcaption>
             </figure>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- Recomendaciones -->
-    <section class="section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Recomendaciones para tu visita</h2>
+    <section class="py-10 md:py-16">
+      <div class="mx-auto w-full max-w-[1312px] px-4 md:max-w-[1360px] md:px-10 lg:max-w-[1440px] lg:px-20">
+        <div class="mb-6">
+          <h2 class="font-titulo text-2xl font-bold leading-tight text-texto md:text-[1.75rem]">Recomendaciones para tu visita</h2>
         </div>
-        <div class="stop-tips">
-          <ul class="check-list">
-            <li class="check-item">
+        <div class="flex flex-col gap-8 md:flex-row">
+          <ul class="flex flex-col gap-3 md:flex-1">
+            <li class="flex gap-4 rounded-lg border border-borde bg-white p-5 before:flex before:h-6 before:w-6 before:shrink-0 before:items-center before:justify-center before:rounded-full before:bg-primario/15 before:text-xs before:font-bold before:text-primario-oscuro before:content-['✓']">
               <div>
-                <h3>Sin flash ni trípodes</h3>
-                <p>Está permitido tomar fotos, pero sin flash ni trípodes para preservar las piezas originales.</p>
+                <h3 class="font-titulo text-[0.9375rem] font-bold">Sin flash ni trípodes</h3>
+                <p class="mt-1 text-[0.8125rem] text-suave">Está permitido tomar fotos, pero sin flash ni trípodes para preservar las piezas originales.</p>
               </div>
             </li>
-            <li class="check-item">
+            <li class="flex gap-4 rounded-lg border border-borde bg-white p-5 before:flex before:h-6 before:w-6 before:shrink-0 before:items-center before:justify-center before:rounded-full before:bg-primario/15 before:text-xs before:font-bold before:text-primario-oscuro before:content-['✓']">
               <div>
-                <h3>Duración estimada</h3>
-                <p>Calculá entre 40 y 60 minutos para recorrer todas las salas con calma y leer las referencias.</p>
+                <h3 class="font-titulo text-[0.9375rem] font-bold">Duración estimada</h3>
+                <p class="mt-1 text-[0.8125rem] text-suave">Calculá entre 40 y 60 minutos para recorrer todas las salas con calma y leer las referencias.</p>
               </div>
             </li>
-            <li class="check-item">
+            <li class="flex gap-4 rounded-lg border border-borde bg-white p-5 before:flex before:h-6 before:w-6 before:shrink-0 before:items-center before:justify-center before:rounded-full before:bg-primario/15 before:text-xs before:font-bold before:text-primario-oscuro before:content-['✓']">
               <div>
-                <h3>Mochilas y bolsos</h3>
-                <p>Al ingresar te pedirán dejar bolsos grandes y mochilas en el guardarropa de la recepción.</p>
+                <h3 class="font-titulo text-[0.9375rem] font-bold">Mochilas y bolsos</h3>
+                <p class="mt-1 text-[0.8125rem] text-suave">Al ingresar te pedirán dejar bolsos grandes y mochilas en el guardarropa de la recepción.</p>
               </div>
             </li>
-            <li class="check-item">
+            <li class="flex gap-4 rounded-lg border border-borde bg-white p-5 before:flex before:h-6 before:w-6 before:shrink-0 before:items-center before:justify-center before:rounded-full before:bg-primario/15 before:text-xs before:font-bold before:text-primario-oscuro before:content-['✓']">
               <div>
-                <h3>Visitas guiadas</h3>
-                <p>Los fines de semana se ofrecen visitas guiadas gratuitas. Consultá horarios en la recepción del museo.</p>
+                <h3 class="font-titulo text-[0.9375rem] font-bold">Visitas guiadas</h3>
+                <p class="mt-1 text-[0.8125rem] text-suave">Los fines de semana se ofrecen visitas guiadas gratuitas. Consultá horarios en la recepción del museo.</p>
               </div>
             </li>
           </ul>
-          <div class="stop-side">
-            <div class="alert">
-              <h3>⚠️ Atención</h3>
-              <p>El museo no cuenta con estacionamiento propio. Se recomienda llegar en transporte público: <strong>Subte D</strong> (estación Juramento) o <strong>colectivos</strong> 29, 41, 44, 59, 60, 63, 65, 80, 152.</p>
+          <div class="flex flex-col gap-5 md:flex-[0_0_40%]">
+            <div class="rounded-lg bg-alerta p-5 text-alerta-texto">
+              <h3 class="font-titulo text-[0.9375rem] font-bold text-alerta-texto">⚠️ Atención</h3>
+              <p class="mt-2 text-[0.8125rem]">El museo no cuenta con estacionamiento propio. Se recomienda llegar en transporte público: <strong>Subte D</strong> (estación Juramento) o <strong>colectivos</strong> 29, 41, 44, 59, 60, 63, 65, 80, 152.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
+    <section class="bg-primario/10 py-10 md:py-16">
+      <div
+        class="mx-auto flex w-full max-w-[1312px] flex-col gap-5 px-4 md:max-w-[1360px] md:flex-row md:items-center md:justify-between md:gap-10 md:px-10 lg:max-w-[1440px] lg:px-20">
+        <div>
+          <p class="font-titulo text-[0.8125rem] font-bold uppercase tracking-wider text-primario-oscuro">Visitas
+            guiadas</p>
+          <h2 class="mt-2 font-titulo text-[1.375rem] font-bold leading-tight text-texto">¿Lo querés hacer con guía?</h2>
+          <p class="mt-2 max-w-[560px] text-sm text-suave">Reservá el recorrido completo o solo las paradas que te
+            interesen. Elegís fecha, horario y cantidad de personas, no pagás nada por adelantado y podés cancelar sin
+            costo hasta 24 horas antes.</p>
+        </div>
+        <a href="reserva.html"
+          class="inline-flex items-center gap-2.5 rounded-boton bg-primario-oscuro px-7 py-3 font-bold text-white no-underline transition-colors hover:bg-verde focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-primario">Reservá tu recorrido <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
 
-    <!-- Paginación -->
-    <section class="section section--alt">
-      <nav class="container stop-pager" aria-label="Navegación entre paradas">
-        <a class="link-arrow" href="estadioMonumental.html"><span aria-hidden="true">←</span> Parada anterior: Estadio Monumental</a>
-        <a class="btn-primary" href="museoLarreta.html">Siguiente parada: Museo Larreta <span aria-hidden="true">→</span></a>
+    <section class="py-10 md:py-16 bg-fondo">
+      <nav class="mx-auto w-full max-w-[1312px] px-4 md:max-w-[1360px] md:px-10 lg:max-w-[1440px] lg:px-20 flex flex-wrap items-center justify-between gap-4" aria-label="Navegación entre paradas">
+        <a class="inline-flex items-center gap-1.5 text-sm font-bold text-primario-oscuro no-underline hover:underline" href="estadioMonumental.html"><span aria-hidden="true">←</span> Parada anterior: Estadio Monumental</a>
+        <a class="inline-flex items-center gap-2.5 rounded-boton bg-primario-oscuro px-7 py-3 font-bold text-white no-underline transition-colors hover:bg-verde focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-primario" href="museoLarreta.html">Siguiente parada: Museo Larreta <span aria-hidden="true">→</span></a>
       </nav>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-main">
-        <div class="footer-brand">
-          <a class="logo" href="index.html">
-            <img src="imagenes/logo-belgrano.png" alt="" width="36" height="36">
-            <span class="logo-text"><strong>Turismo Belgrano</strong></span>
+  <footer class="bg-texto pb-8 pt-10 text-white">
+    <div class="mx-auto w-full max-w-[1312px] px-4 md:max-w-[1360px] md:px-10 lg:max-w-[1440px] lg:px-20">
+      <div class="flex flex-col gap-8 md:flex-row md:justify-between">
+
+        <div class="max-w-[360px]">
+          <a href="index.html" class="flex items-center gap-3 text-white no-underline">
+            <img src="imagenes/logo-belgrano.png" alt="" width="36" height="36" class="h-9 w-9">
+            <strong class="font-marca text-base font-bold">Turismo Belgrano</strong>
           </a>
-          <p>Recorrido autoguiado por cinco paradas del barrio de Belgrano, Comuna 13: historia, arquitectura y espacios verdes.</p>
+          <p class="mt-4 text-sm text-texto-pie">Recorrido autoguiado por cinco paradas del barrio de Belgrano, Comuna
+            13: historia, arquitectura y espacios verdes.</p>
         </div>
 
-        <nav class="footer-col" aria-label="Paradas del recorrido">
-          <h2>Paradas</h2>
-          <ul>
-            <li><a href="barrancasDeBelgrano.html">Barrancas de Belgrano</a></li>
-            <li><a href="estadioMonumental.html">Estadio Monumental</a></li>
-            <li><a href="museoSarmiento.html">Museo Histórico Sarmiento</a></li>
-            <li><a href="museoLarreta.html">Museo Larreta</a></li>
-            <li><a href="barrioChino.html">Barrio Chino y Arco</a></li>
+        <nav aria-label="Paradas del recorrido">
+          <h2 class="font-titulo text-[0.8125rem] font-bold uppercase tracking-[0.5px] text-primario">Paradas</h2>
+          <ul class="mt-4 flex flex-col gap-2.5">
+            <li><a href="barrancasDeBelgrano.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Barrancas de Belgrano</a></li>
+            <li><a href="estadioMonumental.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Estadio Monumental</a></li>
+            <li><a href="museoSarmiento.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Museo Histórico Sarmiento</a></li>
+            <li><a href="museoLarreta.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Museo Larreta</a></li>
+            <li><a href="barrioChino.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Barrio Chino y Arco</a></li>
           </ul>
         </nav>
 
-        <div class="footer-col">
-          <h2>Recursos</h2>
-          <ul>
-            <li><a href="#">Contacto e Informes</a></li>
-            <li><a href="#">Oficinas de Turismo</a></li>
+        <div>
+          <h2 class="font-titulo text-[0.8125rem] font-bold uppercase tracking-[0.5px] text-primario">Recursos</h2>
+          <ul class="mt-4 flex flex-col gap-2.5">
+            <li><a href="reserva.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Reservá tu recorrido</a></li>
+            <li><a href="preparacion.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Preparación del recorrido</a></li>
+            <li><a href="contacto.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Contacto e Informes</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="footer-bottom">
+      <div
+        class="mt-8 flex flex-col gap-3 border-t border-white/15 pt-6 text-xs text-texto-pie md:flex-row md:justify-between">
         <p>© 2026 Grupo 1 · Proyecto académico de Diseño y Desarrollo Web.</p>
-        <a href="#">Términos y condiciones</a>
+        <a href="#" class="text-texto-pie underline hover:text-white">Términos y condiciones</a>
       </div>
     </div>
   </footer>

@@ -1,33 +1,3 @@
-/* ==========================================================================
-   TURISMO BELGRANO · Grupo 1 · Diseño y Desarrollo Web
-   styles.css — ESTILOS GLOBALES (compartidos por todas las páginas)
-
-   Índice
-   0. Tipografías locales (@font-face)
-   1. Variables (ficha de diseño)
-   2. Reset y base
-   3. Tipografía y títulos
-   4. Layout general (contenedor y secciones)
-   5. Header (global)
-   6. Footer (global)
-   7. Botones y enlaces
-   8. Etiquetas (badges) y número de parada
-   9. Tarjetas, lista de recomendaciones y alertas
-   10. Páginas de parada (estructura común a las 5 paradas)
-   11. Utilidades de accesibilidad
-
-   Lo que es ÚNICO de cada página (hero del home, tabla de preparación,
-   etc.) está dentro de la etiqueta <style> de ese HTML.
-   Enfoque Mobile First: los estilos base son para celular y las
-   media queries (min-width) agregan el diseño de tablet y escritorio.
-   ========================================================================== */
-
-
-/* 0. TIPOGRAFÍAS LOCALES ==================================================
-   Las mismas del Figma, guardadas en la carpeta /fuentes (formato .woff2).
-   No dependen de Google Fonts ni de ningún servidor externo.
-   Gabarito: títulos · Montserrat: marca (header y footer) · Open Sans: textos
-   Las tres son de licencia libre (SIL Open Font License). */
 @font-face {
   font-family: 'Gabarito';
   src: url('../fuentes/gabarito-600.woff2') format('woff2');
@@ -84,39 +54,32 @@
   font-display: swap;
 }
 
-
-/* 1. VARIABLES ============================================================ */
 :root {
-  /* Paleta de colores (extraída de la insignia de Belgrano) */
-  --color-primary: #5CA4D6;        /* Celeste cielo: detalles y decoración */
-  --color-primary-dark: #2B6C9B;   /* Celeste oscuro: botones y enlaces (contraste AA con blanco) */
-  --color-secondary: #7A7E83;      /* Gris arquitectura */
-  --color-accent-dark: #2F6A34;    /* Verde Barrancas */
-  --color-accent-light: #54A58C;   /* Verde agua / río */
-  --color-bg: #F8F9FA;             /* Fondo de secciones */
-  --color-text: #2C3035;           /* Texto principal */
-  --color-text-soft: #5F666E;      /* Texto secundario */
+
+  --color-primary: #5CA4D6;
+  --color-primary-dark: #2B6C9B;
+  --color-secondary: #7A7E83;
+  --color-accent-dark: #2F6A34;
+  --color-accent-light: #54A58C;
+  --color-bg: #F8F9FA;
+  --color-text: #2C3035;
+  --color-text-soft: #5F666E;
   --color-card-bg: #FFFFFF;
   --color-border: #E2E8F0;
   --color-footer-text: #C5C9CE;
 
-  /* Tipografías */
-  --font-heading: 'Gabarito', 'Trebuchet MS', sans-serif;   /* títulos */
-  --font-brand: 'Montserrat', Arial, sans-serif;            /* logo, header y footer */
-  --font-body: 'Open Sans', Arial, sans-serif;              /* textos */
+  --font-heading: 'Gabarito', 'Trebuchet MS', sans-serif;
+  --font-brand: 'Montserrat', Arial, sans-serif;
+  --font-body: 'Open Sans', Arial, sans-serif;
 
-  /* Estilos de UI */
   --radius-card: 12px;
   --radius-btn: 24px;
   --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
 
-  /* Medidas */
   --container-width: 1280px;
-  --gutter: 16px;                  /* margen lateral en celular */
+  --gutter: 16px;
 }
 
-
-/* 2. RESET Y BASE ========================================================= */
 *,
 *::before,
 *::after {
@@ -161,8 +124,6 @@ address {
   font-style: normal;
 }
 
-
-/* 3. TIPOGRAFÍA Y TÍTULOS ================================================= */
 h1,
 h2,
 h3 {
@@ -172,11 +133,10 @@ h3 {
   line-height: 1.2;
 }
 
-h1 { font-size: 1.75rem; font-weight: 800; }   /* 28px */
-h2 { font-size: 1.5rem;  font-weight: 700; }   /* 24px */
-h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
+h1 { font-size: 1.75rem; font-weight: 800; }
+h2 { font-size: 1.5rem;  font-weight: 700; }
+h3 { font-size: 1.125rem; font-weight: 700; }
 
-/* Bajada verde que acompaña al título principal de cada página */
 .page-subtitle {
   margin-top: 6px;
   font-family: var(--font-heading);
@@ -185,13 +145,11 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
   color: var(--color-accent-dark);
 }
 
-/* Párrafo de introducción */
 .lead {
   font-size: 0.9375rem;
   color: var(--color-text-soft);
 }
 
-/* Rótulo chico en mayúsculas (arriba de títulos, en tarjetas de datos, etc.) */
 .eyebrow {
   font-family: var(--font-heading);
   font-size: 0.8125rem;
@@ -201,7 +159,6 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
   color: var(--color-primary-dark);
 }
 
-/* Encabezado de sección: título + bajada */
 .section-title {
   margin-bottom: 24px;
 }
@@ -217,12 +174,10 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
 }
 
 @media (min-width: 900px) {
-  h1 { font-size: 2rem; }      /* 32px */
-  h2 { font-size: 1.75rem; }   /* 28px */
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
 }
 
-
-/* 4. LAYOUT GENERAL ======================================================= */
 .container {
   width: 100%;
   max-width: calc(var(--container-width) + var(--gutter) * 2);
@@ -247,8 +202,6 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
   :root { --gutter: 80px; }
 }
 
-
-/* 5. HEADER (GLOBAL) ====================================================== */
 .site-header {
   background-color: var(--color-card-bg);
   border-bottom: 1px solid var(--color-border);
@@ -256,14 +209,13 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
 
 .header-inner {
   display: flex;
-  flex-wrap: wrap;            /* en celular los bloques bajan de línea */
+  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
   padding-top: 12px;
   padding-bottom: 12px;
 }
 
-/* Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -293,7 +245,6 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
   color: var(--color-text-soft);
 }
 
-/* Buscador */
 .search {
   display: flex;
   align-items: center;
@@ -313,7 +264,7 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
 
 .search input {
   width: 100%;
-  min-height: 44px;           /* tamaño cómodo para tocar con el dedo */
+  min-height: 44px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -335,7 +286,6 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
   box-shadow: 0 0 0 3px rgba(92, 164, 214, 0.35);
 }
 
-/* Navegación principal */
 .main-nav {
   order: 3;
   width: 100%;
@@ -362,7 +312,6 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
   background-color: var(--color-bg);
 }
 
-/* Página o sección actual (aria-current="page" o "true") */
 .main-nav a[aria-current] {
   background-color: var(--color-primary-dark);
   color: #FFFFFF;
@@ -397,8 +346,6 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
   }
 }
 
-
-/* 6. FOOTER (GLOBAL) ====================================================== */
 .site-footer {
   padding: 40px 0 32px;
   background-color: var(--color-text);
@@ -493,8 +440,6 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
   }
 }
 
-
-/* 7. BOTONES Y ENLACES ==================================================== */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -512,12 +457,34 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
   background-color: var(--color-accent-dark);
 }
 
-/* Botón de enlace externo dentro de una parada */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 26px;
+  background-color: transparent;
+  color: var(--color-primary-dark);
+  border: 2px solid var(--color-primary-dark);
+  border-radius: var(--radius-btn);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary-dark);
+  color: #FFFFFF;
+}
+
+.btn-secondary:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .stop-cta {
   margin-top: 20px;
 }
 
-/* Enlace con flecha ("Conocer más →") */
 .link-arrow {
   display: inline-flex;
   align-items: center;
@@ -532,15 +499,12 @@ h3 { font-size: 1.125rem; font-weight: 700; }  /* 18px */
   text-decoration: underline;
 }
 
-/* Foco visible para quien navega con teclado */
 a:focus-visible,
 .btn-primary:focus-visible {
   outline: 3px solid var(--color-primary);
   outline-offset: 2px;
 }
 
-
-/* 8. ETIQUETAS Y NÚMERO DE PARADA ========================================= */
 .badge {
   display: inline-block;
   padding: 6px 12px;
@@ -558,7 +522,6 @@ a:focus-visible,
   color: var(--color-primary-dark);
 }
 
-/* Círculo con el número de parada (1 a 5) */
 .stop-number {
   display: inline-flex;
   flex-shrink: 0;
@@ -573,7 +536,6 @@ a:focus-visible,
   color: #FFFFFF;
 }
 
-/* Fila "círculo + rótulo" que encabeza cada página interna */
 .page-eyebrow {
   display: flex;
   align-items: center;
@@ -581,8 +543,6 @@ a:focus-visible,
   margin-bottom: 24px;
 }
 
-
-/* 9. TARJETAS, RECOMENDACIONES Y ALERTAS ================================== */
 .card {
   padding: 24px;
   background-color: var(--color-card-bg);
@@ -592,7 +552,7 @@ a:focus-visible,
 }
 
 .card--hover:hover {
-  transform: translateY(-5px);            /* efecto de la web de Turismo BA */
+  transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
@@ -606,7 +566,6 @@ a:focus-visible,
   color: var(--color-text-soft);
 }
 
-/* Recomendación con tilde (se usa en Preparación y en cada parada) */
 .check-item {
   display: flex;
   gap: 16px;
@@ -641,7 +600,6 @@ a:focus-visible,
   color: var(--color-text-soft);
 }
 
-/* Aviso amarillo de atención */
 .alert {
   padding: 20px;
   background-color: #FEF3C7;
@@ -659,9 +617,6 @@ a:focus-visible,
   font-size: 0.8125rem;
 }
 
-
-/* 10. PÁGINAS DE PARADA (estructura común a las 5 paradas) ================= */
-/* Bloque principal: texto a la izquierda y foto a la derecha */
 .stop-hero {
   display: flex;
   flex-direction: column;
@@ -674,7 +629,7 @@ a:focus-visible,
 
 .stop-figure img {
   width: 100%;
-  aspect-ratio: 515 / 327;          /* medida de la imagen en Figma */
+  aspect-ratio: 515 / 327;
   object-fit: cover;
   border-radius: var(--radius-card);
 }
@@ -685,7 +640,6 @@ a:focus-visible,
   color: var(--color-text-soft);
 }
 
-/* Subtítulo chico en mayúsculas ("Actividades y experiencias sugeridas") */
 .subheading {
   margin: 24px 0 10px;
   font-size: 0.875rem;
@@ -694,7 +648,6 @@ a:focus-visible,
   text-transform: uppercase;
 }
 
-/* Lista de actividades con tilde verde */
 .activities li {
   position: relative;
   padding-left: 24px;
@@ -722,7 +675,6 @@ a:focus-visible,
   color: var(--color-accent-dark);
 }
 
-/* Tarjeta gris "Datos útiles para planificar" */
 .data-card {
   margin-top: 24px;
   padding: 16px;
@@ -755,7 +707,6 @@ a:focus-visible,
   font-weight: 600;
 }
 
-/* "Antes de salir": recomendaciones + columna lateral */
 .stop-tips {
   display: flex;
   flex-direction: column;
@@ -774,7 +725,6 @@ a:focus-visible,
   gap: 20px;
 }
 
-/* Navegación entre paradas (anterior / siguiente) */
 .stop-pager {
   display: flex;
   flex-wrap: wrap;
@@ -810,13 +760,10 @@ a:focus-visible,
   }
 
   .stop-figure {
-    margin-top: 64px;               /* la foto arranca a la altura del título */
+    margin-top: 64px;
   }
 }
 
-
-/* 11. UTILIDADES DE ACCESIBILIDAD ========================================= */
-/* Texto solo para lectores de pantalla */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -829,7 +776,6 @@ a:focus-visible,
   border: 0;
 }
 
-/* Enlace "Saltar al contenido": aparece al navegar con la tecla Tab */
 .skip-link {
   position: absolute;
   top: -100px;
@@ -843,4 +789,39 @@ a:focus-visible,
 
 .skip-link:focus {
   top: 0;
+}
+
+.reserva-cta {
+  background-color: rgba(92, 164, 214, 0.1);
+}
+
+.reserva-cta-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reserva-cta h2 {
+  margin-top: 8px;
+  font-size: 1.375rem;
+}
+
+.reserva-cta .texto {
+  margin-top: 8px;
+  max-width: 560px;
+  font-size: 0.875rem;
+  color: var(--color-text-soft);
+}
+
+.reserva-cta .btn-primary {
+  flex-shrink: 0;
+}
+
+@media (min-width: 900px) {
+  .reserva-cta-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
 }

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservá tu recorrido | Turismo Belgrano</title>
+  <link rel="icon" href="imagenes/favicon.png">
+
+  <link rel="stylesheet" href="estilos/base.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
+
+  <style type="text/tailwindcss">
+    .btn-primary { @apply inline-flex items-center gap-2.5 rounded-boton bg-primario-oscuro px-7 py-3 font-bold text-white no-underline transition-colors hover:bg-verde; }
+    .btn-secondary { @apply inline-flex items-center gap-2.5 rounded-boton border-2 border-primario-oscuro px-6 py-2.5 font-bold text-primario-oscuro no-underline transition-colors hover:bg-primario-oscuro hover:text-white; }
+    .btn-primary:focus-visible, .btn-secondary:focus-visible { @apply outline outline-[3px] outline-offset-2 outline-primario; }
+    .link-arrow { @apply inline-flex items-center gap-1.5 text-sm font-bold text-primario-oscuro no-underline hover:underline; }
+
+    .pasos { @apply mt-5 flex flex-wrap gap-x-5 gap-y-2; }
+    .pasos li { @apply flex items-center gap-2 text-[0.8125rem] font-semibold text-suave; }
+    .paso-num { @apply inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primario-oscuro text-xs font-bold text-white; }
+
+    .reserva-grid { @apply flex flex-col gap-8 md:flex-row md:items-start; }
+    .reserva-form { @apply flex flex-1 flex-col gap-5; }
+    .bloque { @apply m-0 rounded-tarjeta border border-borde bg-white p-6; }
+    .bloque legend { @apply flex items-center gap-2.5 p-0 font-titulo text-lg font-bold; }
+    .bloque-ayuda { @apply mt-2 text-[0.8125rem] text-suave; }
+
+    .opciones-modo { @apply mt-5 flex flex-col gap-3; }
+    .opcion { @apply flex cursor-pointer items-start gap-3 rounded-tarjeta border-2 border-borde p-4 hover:border-primario; }
+    .opcion:has(input:checked) { @apply border-primario-oscuro bg-primario/[0.08]; }
+    .opcion:focus-within { @apply outline outline-[3px] outline-offset-2 outline-primario; }
+    .opcion input { @apply mt-0.5 h-5 w-5 shrink-0 accent-primario-oscuro; }
+    .opcion-texto { @apply flex-1; }
+    .opcion-texto strong { @apply block font-titulo text-[0.9375rem]; }
+    .opcion-texto small { @apply mt-0.5 block text-[0.8125rem] text-suave; }
+    .opcion-precio { @apply shrink-0 font-titulo text-[0.9375rem] font-bold text-primario-oscuro; }
+
+    .lista-paradas { @apply mt-4 flex flex-col gap-0.5 border-t border-borde pt-4; }
+    .lista-paradas[data-bloqueada="si"] { @apply opacity-60; }
+    .parada-fila { @apply flex cursor-pointer items-center gap-3 rounded-lg px-2 py-3 text-sm hover:bg-fondo; }
+    .parada-fila:focus-within { @apply outline outline-[3px] outline-offset-2 outline-primario; }
+    .parada-fila input { @apply h-5 w-5 shrink-0 accent-primario-oscuro; }
+    .parada-fila .nombre { @apply flex-1; }
+    .parada-fila .precio { @apply font-bold text-suave; }
+
+    .campos { @apply mt-5 flex flex-col gap-4 md:flex-row; }
+    .campo { @apply md:flex-1; }
+    .campo label { @apply mb-1.5 block text-[0.8125rem] font-bold; }
+    .campo input, .campo select { @apply min-h-[44px] w-full rounded-lg border border-secundario bg-white px-3.5 py-2.5 font-texto text-sm text-texto; }
+    .campo input:focus, .campo select:focus { @apply border-primario-oscuro outline outline-[3px] outline-offset-1 outline-primario; }
+    .campo .pista { @apply mt-1.5 text-xs text-suave; }
+
+    .contador { @apply flex items-center gap-2; }
+    .contador input { @apply w-20 text-center; }
+    .btn-contador { @apply h-11 w-11 shrink-0 cursor-pointer rounded-full border border-secundario bg-fondo font-titulo text-xl font-bold text-primario-oscuro; }
+    .btn-contador:hover:enabled { @apply bg-primario/15; }
+    .btn-contador:disabled { @apply cursor-not-allowed opacity-40; }
+    .btn-contador:focus-visible { @apply outline outline-[3px] outline-offset-2 outline-primario; }
+
+    .mensaje-error { @apply flex items-start gap-2.5 rounded-lg bg-error px-4 py-3.5 text-[0.8125rem] font-semibold text-error-texto; }
+    .mensaje-error[hidden] { @apply hidden; }
+
+    .resumen { @apply sticky top-4 self-start rounded-tarjeta border border-borde bg-white p-6 shadow-tarjeta md:flex-[0_0_340px]; }
+    .resumen h2 { @apply font-titulo text-lg font-bold; }
+    .resumen dl { @apply mt-5; }
+    .resumen dl div + div { @apply mt-3.5; }
+    .resumen dt { @apply text-[11px] uppercase tracking-[0.5px] text-suave; }
+    .resumen dd { @apply mt-1 text-sm font-semibold; }
+
+    .monedas { @apply mt-6 flex gap-2; }
+    .moneda { @apply flex-1 cursor-pointer; }
+    .moneda input { @apply absolute h-px w-px opacity-0; }
+    .moneda span { @apply block rounded-boton border border-secundario px-1.5 py-2.5 text-center text-[0.8125rem] font-bold text-suave; }
+    .moneda input:checked + span { @apply border-primario-oscuro bg-primario-oscuro text-white; }
+    .moneda input:focus-visible + span { @apply outline outline-[3px] outline-offset-2 outline-primario; }
+
+    .total-caja { @apply mt-5 border-t border-borde pt-5; }
+    .total-label { @apply text-xs uppercase tracking-[0.5px] text-suave; }
+    .total-monto { @apply mt-1 font-titulo text-[2rem] font-extrabold leading-tight text-primario-oscuro; }
+    .total-nota { @apply mt-2.5 text-xs text-suave; }
+    .estado-api { @apply mt-2 flex items-center gap-1.5 text-[11px] text-suave; }
+    .estado-api[data-estado="ok"] { @apply text-verde; }
+    .estado-api[data-estado="error"] { @apply text-alerta-texto; }
+
+    .acciones { @apply mt-6 flex flex-wrap gap-3; }
+    .acciones button { @apply cursor-pointer border-0 font-texto text-base; }
+    .acciones .btn-primary:disabled { @apply cursor-not-allowed bg-secundario; }
+
+    .ayuda-grid { @apply flex flex-col gap-5 md:flex-row md:items-start; }
+    .ayuda-grid > * { @apply md:flex-1; }
+    .check-list { @apply flex flex-col gap-3; }
+    .check-item { @apply flex gap-4 rounded-lg border border-borde bg-white p-5; }
+    .check-item::before { @apply flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primario/15 text-xs font-bold text-primario-oscuro content-['✓']; }
+    .check-item h3 { @apply font-titulo text-[0.9375rem] font-bold; }
+    .check-item p { @apply mt-1 text-[0.8125rem] text-suave; }
+    .alert { @apply rounded-lg bg-alerta p-5 text-alerta-texto; }
+    .alert h3 { @apply font-titulo text-[0.9375rem] font-bold text-alerta-texto; }
+    .alert p { @apply mt-2 text-[0.8125rem]; }
+    .section-title { @apply mb-6; }
+  </style>
+</head>
+
+<body class="bg-white font-texto text-base leading-relaxed text-texto">
+  <a href="#contenido"
+    class="absolute left-4 top-[-100px] z-10 rounded-b-lg bg-texto px-4 py-2.5 text-white focus:top-0">Saltar al contenido</a>
+
+  <header class="border-b border-borde bg-white">
+    <div
+      class="mx-auto flex w-full max-w-[1312px] flex-wrap items-center gap-3 px-4 py-3 md:max-w-[1360px] md:min-h-[80px] md:flex-nowrap md:justify-between md:gap-4 md:px-10 md:py-0 lg:max-w-[1440px] lg:px-20">
+
+      <a href="index.html" class="flex items-center gap-3 text-texto no-underline">
+        <img src="imagenes/logo-belgrano.png" alt="" width="44" height="44" class="h-11 w-11">
+        <span>
+          <strong class="block font-marca text-base font-bold leading-tight">Turismo Belgrano</strong>
+          <small class="block text-[11px] uppercase tracking-[0.5px] text-suave">Guías autoguiadas</small>
+        </span>
+      </a>
+
+      <nav class="order-3 w-full md:order-2 md:w-auto" aria-label="Navegación principal">
+        <ul class="flex flex-wrap gap-2">
+          <li><a href="index.html"
+              class="block rounded-boton px-4 py-[11px] text-sm font-semibold text-texto no-underline transition-colors hover:bg-fondo md:py-2">El Circuito</a></li>
+          <li><a href="index.html#paradas"
+              class="block rounded-boton px-4 py-[11px] text-sm font-semibold text-texto no-underline transition-colors hover:bg-fondo md:py-2">Paradas</a></li>
+          <li><a href="preparacion.html"
+              class="block rounded-boton px-4 py-[11px] text-sm font-semibold text-texto no-underline transition-colors hover:bg-fondo md:py-2">Preparación</a></li>
+          <li><a href="reserva.html" aria-current="page"
+              class="block rounded-boton px-4 py-[11px] text-sm font-semibold text-texto no-underline transition-colors hover:bg-fondo md:py-2 [&[aria-current]]:bg-primario-oscuro [&[aria-current]]:font-bold [&[aria-current]]:text-white">Reservar</a></li>
+        </ul>
+      </nav>
+
+      <form role="search" action="#" method="get"
+        class="order-2 flex w-full items-center gap-2 rounded-boton border border-secundario bg-fondo px-3.5 focus-within:border-primario-oscuro focus-within:ring-[3px] focus-within:ring-primario/35 md:order-3 md:w-[260px]">
+        <label class="sr-only" for="buscar">Buscar en el recorrido</label>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" aria-hidden="true" class="shrink-0 text-primario-oscuro">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M16.5 16.5L21 21" />
+        </svg>
+        <input type="search" id="buscar" name="q" placeholder="Buscar en el recorrido…"
+          class="min-h-[44px] w-full border-0 bg-transparent font-texto text-sm text-texto placeholder:text-suave focus:outline-none md:min-h-[40px]">
+      </form>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <section class="py-10 md:py-16">
+      <div class="mx-auto w-full max-w-[1312px] px-4 md:max-w-[1360px] md:px-10 lg:max-w-[1440px] lg:px-20">
+        <div class="mb-6 flex items-center gap-2">
+          <span class="font-titulo text-[0.8125rem] font-bold uppercase tracking-wider text-primario-oscuro">Reserva</span>
+        </div>
+        <h1 class="font-titulo text-[1.75rem] font-extrabold leading-tight text-texto md:text-[2rem]">Reservá tu recorrido</h1>
+        <p class="mt-1.5 font-titulo text-base font-semibold text-verde">Elegí qué querés conocer, cuándo y con cuánta gente</p>
+        <p class="mt-6 text-[0.9375rem] text-suave">Podés reservar el circuito completo o solo las paradas que te interesen. No pagás nada ahora:
+          la reserva te guarda el lugar y la confirmación te llega al instante.</p>
+
+        <ol class="pasos">
+          <li><span class="paso-num">1</span> Elegí qué recorrer</li>
+          <li><span class="paso-num">2</span> Elegí cuándo ir</li>
+          <li><span class="paso-num">3</span> Confirmá</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="py-10 md:py-16 bg-fondo">
+      <form id="form-reserva" class="mx-auto w-full max-w-[1312px] px-4 md:max-w-[1360px] md:px-10 lg:max-w-[1440px] lg:px-20 reserva-grid" action="reserva-confirmada.html" method="get"
+        novalidate>
+
+        <div class="reserva-form">
+
+          <fieldset class="bloque">
+            <legend><span class="paso-num">1</span> ¿Qué querés recorrer?</legend>
+            <p class="bloque-ayuda">El recorrido completo tiene 15 % de descuento sobre la suma de las cinco paradas.</p>
+
+            <div class="opciones-modo">
+              <label class="opcion">
+                <input type="radio" name="modo" value="completo" id="modo-completo" checked>
+                <span class="opcion-texto">
+                  <strong>Recorrido completo</strong>
+                  <small>Las cinco paradas, en el orden sugerido · 2,5 h aprox.</small>
+                </span>
+                <span class="opcion-precio">$ 39.900</span>
+              </label>
+
+              <label class="opcion">
+                <input type="radio" name="modo" value="sueltas" id="modo-sueltas">
+                <span class="opcion-texto">
+                  <strong>Elegir paradas sueltas</strong>
+                  <small>Armá tu propio recorrido con las que quieras</small>
+                </span>
+              </label>
+            </div>
+
+            <ul class="lista-paradas" id="lista-paradas" data-bloqueada="si">
+              <li>
+                <label class="parada-fila">
+                  <input type="checkbox" class="parada-check" data-precio="3500" value="Barrancas de Belgrano" checked>
+                  <span class="nombre">1 · Barrancas de Belgrano</span>
+                  <span class="precio">$ 3.500</span>
+                </label>
+              </li>
+              <li>
+                <label class="parada-fila">
+                  <input type="checkbox" class="parada-check" data-precio="28000" value="Estadio Monumental" checked>
+                  <span class="nombre">2 · Estadio Monumental</span>
+                  <span class="precio">$ 28.000</span>
+                </label>
+              </li>
+              <li>
+                <label class="parada-fila">
+                  <input type="checkbox" class="parada-check" data-precio="3500" value="Museo Histórico Sarmiento"
+                    checked>
+                  <span class="nombre">3 · Museo Histórico Sarmiento</span>
+                  <span class="precio">$ 3.500</span>
+                </label>
+              </li>
+              <li>
+                <label class="parada-fila">
+                  <input type="checkbox" class="parada-check" data-precio="8000" value="Museo Larreta" checked>
+                  <span class="nombre">4 · Museo Larreta</span>
+                  <span class="precio">$ 8.000</span>
+                </label>
+              </li>
+              <li>
+                <label class="parada-fila">
+                  <input type="checkbox" class="parada-check" data-precio="4000" value="Barrio Chino y Arco" checked>
+                  <span class="nombre">5 · Barrio Chino y Arco</span>
+                  <span class="precio">$ 4.000</span>
+                </label>
+              </li>
+            </ul>
+          </fieldset>
+
+          <fieldset class="bloque">
+            <legend><span class="paso-num">2</span> ¿Cuándo querés ir?</legend>
+            <p class="bloque-ayuda">Las salidas arrancan en las Barrancas de Belgrano, en Juramento y 11 de Septiembre.
+            </p>
+
+            <div class="campos">
+              <div class="campo">
+                <label for="fecha">Fecha de la visita</label>
+                <input type="date" id="fecha" name="fecha" required>
+                <p class="pista">Reservá con al menos un día de anticipación.</p>
+              </div>
+
+              <div class="campo">
+                <label for="horario">Horario de salida</label>
+                <select id="horario" name="horario" required>
+                  <option value="">Elegí un horario</option>
+                  <option value="09:00">09:00</option>
+                  <option value="10:00">10:00</option>
+                  <option value="11:00">11:00</option>
+                  <option value="14:00">14:00</option>
+                  <option value="15:00">15:00</option>
+                  <option value="16:00">16:00</option>
+                </select>
+                <p class="pista">Los museos cierran a las 19 h.</p>
+              </div>
+
+              <div class="campo">
+                <label for="personas">Cantidad de personas</label>
+                <div class="contador">
+                  <button type="button" class="btn-contador" id="menos" aria-label="Quitar una persona">−</button>
+                  <input type="number" id="personas" name="personas" value="2" min="1" max="20" required>
+                  <button type="button" class="btn-contador" id="mas" aria-label="Agregar una persona">+</button>
+                </div>
+                <p class="pista">Hasta 20 personas por reserva.</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <p class="mensaje-error" id="error-reserva" role="alert" hidden></p>
+
+          <input type="hidden" name="detalle" id="detalle">
+          <input type="hidden" name="total" id="total-oculto">
+
+          <div class="acciones">
+            <button type="submit" class="btn-primary" id="confirmar">Confirmar reserva</button>
+            <button type="reset" class="btn-secondary" id="reiniciar">Empezar de nuevo</button>
+          </div>
+        </div>
+
+        <aside class="resumen" aria-labelledby="titulo-resumen">
+          <h2 id="titulo-resumen">Tu reserva</h2>
+
+          <dl aria-live="polite">
+            <div>
+              <dt>Paradas</dt>
+              <dd id="resumen-paradas">Recorrido completo (5 paradas)</dd>
+            </div>
+            <div>
+              <dt>Fecha</dt>
+              <dd id="resumen-fecha">Todavía sin elegir</dd>
+            </div>
+            <div>
+              <dt>Horario</dt>
+              <dd id="resumen-horario">Todavía sin elegir</dd>
+            </div>
+            <div>
+              <dt>Personas</dt>
+              <dd id="resumen-personas">2</dd>
+            </div>
+          </dl>
+
+          <fieldset class="monedas">
+            <legend class="sr-only">Moneda en la que querés ver el total</legend>
+            <label class="moneda">
+              <input type="radio" name="moneda" value="ARS" data-tasa="1" data-simbolo="$" checked>
+              <span>Pesos</span>
+            </label>
+            <label class="moneda">
+              <input type="radio" name="moneda" value="USD" data-tasa="1560" data-simbolo="US$">
+              <span>Dólares</span>
+            </label>
+            <label class="moneda">
+              <input type="radio" name="moneda" value="BRL" data-tasa="282.58" data-simbolo="R$">
+              <span>Reales</span>
+            </label>
+          </fieldset>
+
+          <div class="total-caja">
+            <p class="total-label">Total a pagar</p>
+            <p class="total-monto" id="total-visible">$ 79.800</p>
+            <p class="total-nota" id="nota-cotizacion">Precio final por 2 personas. Pagás el día de la visita.</p>
+            <p class="estado-api" id="estado-cotizacion">Buscando la cotización del día…</p>
+          </div>
+        </aside>
+      </form>
+    </section>
+
+    <section class="py-10 md:py-16">
+      <div class="mx-auto w-full max-w-[1312px] px-4 md:max-w-[1360px] md:px-10 lg:max-w-[1440px] lg:px-20">
+        <div class="section-title">
+          <h2 class="font-titulo text-2xl font-bold leading-tight text-texto md:text-[1.75rem]">Cómo funciona la reserva</h2>
+        </div>
+
+        <div class="ayuda-grid">
+          <ul class="check-list">
+            <li class="check-item">
+              <div>
+                <h3 class="font-titulo text-lg font-bold leading-tight">No se paga por adelantado</h3>
+                <p>La reserva guarda tu lugar. El pago se hace el día de la visita, en efectivo o con tarjeta, en el
+                  punto de encuentro.</p>
+              </div>
+            </li>
+            <li class="check-item">
+              <div>
+                <h3 class="font-titulo text-lg font-bold leading-tight">Se puede cancelar sin costo</h3>
+                <p>Hasta 24 horas antes de la fecha elegida. Después de ese plazo la reserva se libera sola.</p>
+              </div>
+            </li>
+            <li class="check-item">
+              <div>
+                <h3 class="font-titulo text-lg font-bold leading-tight">¿Dudas antes de reservar?</h3>
+                <p>Mirá la página de <a class="link-arrow" href="preparacion.html">Preparación del recorrido</a> o
+                  escribinos a <a href="mailto:hola@turismobelgrano.ar">hola@turismobelgrano.ar</a>.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="alert">
+            <h3 class="font-titulo text-lg font-bold leading-tight">⚠️ Dos cosas a tener en cuenta</h3>
+            <p>El Estadio Monumental no hace visitas los días de partido: si elegís esa parada, te confirmamos por mail
+              si la fecha está disponible.</p>
+            <p>El Museo Larreta cierra los martes, y el Museo Sarmiento los lunes y martes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-texto pb-8 pt-10 text-white">
+    <div class="mx-auto w-full max-w-[1312px] px-4 md:max-w-[1360px] md:px-10 lg:max-w-[1440px] lg:px-20">
+      <div class="flex flex-col gap-8 md:flex-row md:justify-between">
+
+        <div class="max-w-[360px]">
+          <a href="index.html" class="flex items-center gap-3 text-white no-underline">
+            <img src="imagenes/logo-belgrano.png" alt="" width="36" height="36" class="h-9 w-9">
+            <strong class="font-marca text-base font-bold">Turismo Belgrano</strong>
+          </a>
+          <p class="mt-4 text-sm text-texto-pie">Recorrido autoguiado por cinco paradas del barrio de Belgrano, Comuna
+            13: historia, arquitectura y espacios verdes.</p>
+        </div>
+
+        <nav aria-label="Paradas del recorrido">
+          <h2 class="font-titulo text-[0.8125rem] font-bold uppercase tracking-[0.5px] text-primario">Paradas</h2>
+          <ul class="mt-4 flex flex-col gap-2.5">
+            <li><a href="barrancasDeBelgrano.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Barrancas de Belgrano</a></li>
+            <li><a href="estadioMonumental.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Estadio Monumental</a></li>
+            <li><a href="museoSarmiento.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Museo Histórico Sarmiento</a></li>
+            <li><a href="museoLarreta.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Museo Larreta</a></li>
+            <li><a href="barrioChino.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Barrio Chino y Arco</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 class="font-titulo text-[0.8125rem] font-bold uppercase tracking-[0.5px] text-primario">Recursos</h2>
+          <ul class="mt-4 flex flex-col gap-2.5">
+            <li><a href="reserva.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Reservá tu recorrido</a></li>
+            <li><a href="preparacion.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Preparación del recorrido</a></li>
+            <li><a href="contacto.html" class="text-sm text-texto-pie no-underline hover:text-white hover:underline">Contacto e Informes</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="mt-8 flex flex-col gap-3 border-t border-white/15 pt-6 text-xs text-texto-pie md:flex-row md:justify-between">
+        <p>© 2026 Grupo 1 · Proyecto académico de Diseño y Desarrollo Web.</p>
+        <a href="#" class="text-texto-pie underline hover:text-white">Términos y condiciones</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/reserva.js"></script>
+</body>
+
+</html>
